@@ -21,3 +21,56 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+/* ========================TIMER========================*/
+
+.timer-section {
+  max-width: 355px;
+  margin: 50px auto;
+}
+
+.timer-section input {
+  width: 240px;
+  padding: 8px 16px;
+
+  border-radius: 4px;
+  border: 1px solid #808080;
+}
+
+.timer-section button {
+  margin: 0 0 0 8px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+}
+
+.timer {
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.value {
+  text-align: center;
+  color: #2e2f42;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.03em;
+}
+
+.label {
+  color: #2e2f42;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5;
+}
