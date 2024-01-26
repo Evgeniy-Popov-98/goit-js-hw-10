@@ -8,26 +8,35 @@ import iziToast from 'izitoast';
 // Додатковий імпорт стилів
 import 'izitoast/dist/css/iziToast.min.css';
 
+const inputTimer = document.querySelector('#datetime-picker');
 const buttonTimer = document.querySelector('button[data-start]');
+const days = document.querySelector('span[data-days]');
+const hours = document.querySelector('span[data-hours]');
+const minutes = document.querySelector('span[data-minutes]');
+const seconds = document.querySelector('span[data-seconds]');
 
 let userSelectedDate;
-let timeNow = new Date();
 
 const options = {
   enableTime: true,
   time_24hr: true,
-  defaultDate: timeNow,
+  defaultDate: Date.now(),
   minuteIncrement: 1,
   onClose(selectedDates) {
     userSelectedDate = selectedDates[0];
-    if (userSelectedDate < timeNow) {
+    if (userSelectedDate < options.defaultDate) {
       buttonTimer.setAttribute('disabled', '');
-      iziToast.warning({
-        title: 'Caution',
+      buttonTimer.setAttribute(
+        'style',
+        'background-color: #CFCFCF; color: #989898;'
+      );
+
+      iziToast.error({
         message: 'Please choose a date in the future',
       });
     } else {
       buttonTimer.removeAttribute('disabled');
+      buttonTimer.removeAttribute('style');
       buttonTimer.addEventListener('click', activeTimer);
     }
   },
@@ -36,13 +45,27 @@ const options = {
 flatpickr('#datetime-picker', options);
 
 function activeTimer() {
-  class Timer {
-    constructor(tick) {
-      this.tick = tick;
-      this.isActive = false;
-      this.lastTime = 0;
+  inputTimer.setAttribute('disabled', '');
+  buttonTimer.setAttribute('disabled', '');
+  buttonTimer.setAttribute(
+    'style',
+    'background-color: #CFCFCF; color: #989898;'
+  );
+  let diffTime = userSelectedDate - options.defaultDate;
+  const secondInterval = setInterval(() => {
+    if (diffTime > 0) {
+      let newTimer = convertMs(diffTime);
+
+      days.textContent = `${addZero(newTimer.days)}`;
+      hours.textContent = `${addZero(newTimer.hours)}`;
+      minutes.textContent = `${addZero(newTimer.minutes)}`;
+      seconds.textContent = `${addZero(newTimer.seconds)}`;
+
+      diffTime -= 1000;
+    } else {
+      clearInterval(secondInterval);
     }
-  }
+  }, 1000);
 }
 
 function convertMs(ms) {
@@ -62,4 +85,8 @@ function convertMs(ms) {
   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
 
   return { days, hours, minutes, seconds };
+}
+
+function addZero(num) {
+  return num.toString().padStart(2, '0');
 }
