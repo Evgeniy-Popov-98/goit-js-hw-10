@@ -14,8 +14,29 @@
 		<h1><a href="./index.html">Go back</a></h1>
 	</header>
 	<main>
+		<form class="form">
+			<label class="form-lable">
+				Delay (ms)
+				<input class="form-input" type="number" name="delay" required />
+			</label>
+
+			<fieldset class="fieldset">
+				<legend>State</legend>
+				<label>
+					<input type="radio" name="state" value="fulfilled" required />
+					Fulfilled
+				</label>
+				<label>
+					<input type="radio" name="state" value="rejected" required />
+					Rejected
+				</label>
+			</fieldset>
+
+			<button class="button" type="submit">Create notification</button>
+		</form>
 	</main>
 	<footer></footer>
+	<script type="module" src="./js/2-snackbar.js"></script>
 </body>
 
 </html>
