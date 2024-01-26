@@ -7,7 +7,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>task-2</title>
 	
-  <link rel="stylesheet" href="/goit-js-hw-10/assets/styles-b6524d79.css">
+  <script type="module" crossorigin src="/goit-js-hw-10/commonHelpers2.js"></script>
+  <link rel="modulepreload" crossorigin href="/goit-js-hw-10/assets/modulepreload-polyfill-ec808ebb.js">
+  <link rel="modulepreload" crossorigin href="/goit-js-hw-10/assets/vendor-651d7991.js">
+  <link rel="stylesheet" href="/goit-js-hw-10/assets/vendor-80d0dc0f.css">
+  <link rel="stylesheet" href="/goit-js-hw-10/assets/styles-39eed8a1.css">
 </head>
 
 <body>
@@ -15,8 +19,29 @@
 		<h1><a href="./index.html">Go back</a></h1>
 	</header>
 	<main>
+		<form class="form">
+			<label class="form-lable">
+				Delay (ms)
+				<input class="form-input" type="number" name="delay" required />
+			</label>
+
+			<fieldset class="fieldset">
+				<legend>State</legend>
+				<label>
+					<input type="radio" name="state" value="fulfilled" required />
+					Fulfilled
+				</label>
+				<label>
+					<input type="radio" name="state" value="rejected" required />
+					Rejected
+				</label>
+			</fieldset>
+
+			<button class="button" type="submit">Create notification</button>
+		</form>
 	</main>
 	<footer></footer>
+	
 </body>
 
 </html>
